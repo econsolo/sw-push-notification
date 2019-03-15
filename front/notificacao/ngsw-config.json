@@ -1,0 +1,50 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/*.css",
+          "/*.js"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "checklist-api",
+      "urls": [
+        "/api/aplicacao",
+        "/api/aplicacao/consultar",
+        "/api/checklist",
+        "/api/checklist/config",
+        "/api/configuracao",
+        "/api/opcao-resposta"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "10s",
+        "maxAge": "1d",
+        "maxSize": 300
+      }
+    }
+  ],
+  "push": {
+    "showNotifications": true,
+    "backgroundOnly": false
+  }
+}

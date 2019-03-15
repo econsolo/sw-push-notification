@@ -1,0 +1,66 @@
+<div class="center-vertically-horizontally text-align-center mat-elevation-z8">
+  <form [formGroup]="form" (submit)="login(form.value)">
+    <mat-card>
+      <mat-card-title>
+        Entre com suas credenciais
+      </mat-card-title>
+
+      <mat-card-content>
+
+        <p>
+          <mat-form-field appearance="outline" class="width-100">
+            <mat-label>Login</mat-label>
+            <mat-icon matPrefix>mail</mat-icon>
+            <input matInput type="text" formControlName="login" maxlength="128" autocomplete="off" />
+            <mat-error *ngIf="form.controls['login'].invalid && form.controls['login'].touched">
+              <div class="error" *ngIf="form.controls['login'].errors?.required">
+                Campo obrigatório
+              </div>
+              <div class="error" *ngIf="form.controls['login'].errors?.maxlength">
+                Máximo de 25 caracteres
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline" class="width-100">
+            <mat-label>Senha</mat-label>
+            <mat-icon matPrefix>vpn_key</mat-icon>
+            <input matInput [type]="hide ? 'text' : 'password'" formControlName="senha" maxlength="128" autocomplete="off" />
+            <mat-icon class="click" matSuffix (click)="hide = !hide">
+              {{hide ? 'visibility' : 'visibility_off'}}
+            </mat-icon>
+            <mat-error *ngIf="form.controls['senha'].invalid && form.controls['senha'].touched">
+              <div class="error" *ngIf="form.controls['senha'].errors?.required">
+                Campo obrigatório
+              </div>
+              <div class="error" *ngIf="form.controls['senha'].errors?.maxlength">
+                Máximo de 200 caracteres
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p class="text-align-center" *ngIf="false">
+          Esqueceu sua senha?
+          <a href="javascript:void(0)" (click)="irPara('password_recovery')">Clique aqui</a>
+        </p>
+
+        <p class="text-align-center" *ngIf="false">
+          Não possui uma conta?
+          <a href="javascript:void(0)" (click)="irPara('register')">Registre-se</a>
+        </p>
+
+      </mat-card-content>
+
+      <mat-card-actions class="text-align-center">
+        <button mat-raised-button color="primary" class="width-100" type="submit">
+          Entrar
+          <mat-icon>input</mat-icon>
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</div>

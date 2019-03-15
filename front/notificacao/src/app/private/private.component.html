@@ -1,0 +1,68 @@
+<div class="center-vertically-horizontally la-line-scale la-dark la-2x" id="loading">
+</div>
+<div id="content">
+  <mat-drawer-container [hasBackdrop]="true" class="height-100">
+    <mat-drawer #drawer [mode]="'over'">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <span>Menu</span>
+          <span class="fill-remaining-space"></span>
+          <mat-icon (click)="drawer.toggle();" class="click">close</mat-icon>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <mat-list>
+        <h3 matSubheader>Funcionalidades</h3>
+
+        <mat-list-item *ngFor="let menu of menus" (click)="irPara(menu.path);drawer.close();" class="click">
+          <mat-icon matListIcon>
+            {{ menu.icon }}
+          </mat-icon>
+          <h4 matLine>
+            {{ menu.label }}
+          </h4>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+
+      </mat-list>
+
+      <div style="position: absolute;bottom: 0;left: 0;text-align: center;">
+        <img src="../../assets/simples-logo.png" width="60%">
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <mat-toolbar color="primary" class="mat-elevation-z5">
+        <mat-icon (click)="drawer.toggle();" class="click">menu</mat-icon>&nbsp;
+        <span class="click">
+          Notificação
+        </span>
+
+        <!-- This fills the remaining space of the current row -->
+        <span class="fill-remaining-space"></span>
+        <div>
+          <button mat-button [matMenuTriggerFor]="menu" class="hidden-sm">
+            {{ usuarioLogado.nome }}
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+          <button mat-icon-button [matMenuTriggerFor]="menu" style="display: none" class="show-sm">
+            <mat-icon>person</mat-icon>
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <small mat-menu-item style="display: none" class="show-sm">{{ usuarioLogado.nome }}</small>
+            <mat-divider [inset]="false" style="display: none" class="show-sm"></mat-divider>
+            <button mat-menu-item (click)="sair()">
+              <mat-icon>exit_to_app</mat-icon>
+              Sair
+            </button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+
+      <div class="margin-8">
+        <router-outlet></router-outlet>
+      </div>
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

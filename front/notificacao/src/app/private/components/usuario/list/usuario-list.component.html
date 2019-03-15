@@ -1,0 +1,95 @@
+<mat-card class="mat-elevation-z8">
+
+  <mat-card-title class="text-align-center">
+    Usuários
+  </mat-card-title>
+
+  <mat-card-content>
+
+    <form [formGroup]="form" novalidate (submit)="consultar($event)">
+
+      <div class="row margin-top-10">
+
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="width-100">
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>&nbsp;Nome</mat-label>
+              <input matInput type="text" [formControl]="form.controls.nome" maxlength="100" autocomplete="off" />
+              <mat-error *ngIf="form.controls.nome.invalid">
+                <div class="error" *ngIf="form.controls.nome.errors?.required">
+                  Campo obrigatório
+                </div>
+                <div class="error" *ngIf="form.controls.nome.errors?.maxlength">
+                  Máximo de 100 caracteres
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="width-100">
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>&nbsp;Login</mat-label>
+              <input matInput type="text" [formControl]="form.controls.login" maxlength="25" autocomplete="off" />
+              <mat-error *ngIf="form.controls.login.invalid">
+                <div class="error" *ngIf="form.controls.login.errors?.required">
+                  Campo obrigatório
+                </div>
+                <div class="error" *ngIf="form.controls.login.errors?.maxlength">
+                  Máximo de 25 caracteres
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <button mat-raised-button type="button" class="campo-dinamico" (click)="limpar()">
+            <mat-icon>clear</mat-icon>&nbsp;
+            Limpar
+          </button>
+        </div>
+        <div class="col-auto">
+          <button mat-raised-button color="primary" type="submit" class="campo-dinamico">
+            Consultar&nbsp;
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </mat-card-content>
+
+</mat-card>
+
+<div class="mat-elevation-z8 margin-top-10">
+  <mat-table [dataSource]="dsUsuario">
+
+    <ng-container matColumnDef="nome">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let element" [class.bloqueado]="!element.is_ativo"> {{element.nome}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="login">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> Login </mat-header-cell>
+      <mat-cell *matCellDef="let element" [class.bloqueado]="!element.is_ativo"> {{element.login }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['nome','login']"></mat-header-row>
+    <mat-row (click)="abrirOpcoes(row.id, row.is_ativo, row.push_object)"
+      *matRowDef="let row; columns: ['nome','login'];">
+    </mat-row>
+
+  </mat-table>
+  <mat-paginator [length]="total" [pageSize]="'10'" [pageSizeOptions]="[5, 10, 25, 100]" (page)="mudarPagina($event)"></mat-paginator>
+</div>
+
+<button mat-fab color="primary" class="float click" (click)="novo()">
+  <i class="material-icons">add</i>
+</button>

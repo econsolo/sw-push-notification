@@ -1,0 +1,129 @@
+<div class="mat-elevation-z8">
+
+  <mat-card>
+
+    <mat-card-title class="text-align-center">
+      {{ acao }} Usuário
+    </mat-card-title>
+
+    <mat-card-content>
+
+      <form [formGroup]="form" novalidate (submit)="salvar(form.value, $event)">
+
+        <div class="row margin-top-10">
+
+
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="width-100">
+              <mat-form-field appearance="outline" class="width-100">
+                <mat-label>&nbsp;Nome</mat-label>
+                <input matInput type="text" [formControl]="form.controls.nome" maxlength="100" autocomplete="off" />
+                <mat-error *ngIf="form.controls.nome.invalid">
+                  <div class="error" *ngIf="form.controls.nome.errors?.required">
+                    Campo obrigatório
+                  </div>
+                  <div class="error" *ngIf="form.controls.nome.errors?.maxlength">
+                    Máximo de 100 caracteres
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="width-100">
+              <mat-form-field appearance="outline" class="width-100">
+                <mat-label>&nbsp;Email</mat-label>
+                <input matInput type="text" [formControl]="form.controls.email" maxlength="100" autocomplete="off" />
+                <mat-error *ngIf="form.controls.email.invalid">
+                  <div class="error" *ngIf="form.controls.email.errors?.required">
+                    Campo obrigatório
+                  </div>
+                  <div class="error" *ngIf="form.controls.email.errors?.maxlength">
+                    Máximo de 100 caracteres
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="width-100">
+              <mat-form-field appearance="outline" class="width-100">
+                <mat-label>&nbsp;Login</mat-label>
+                <input matInput type="text" [formControl]="form.controls.login" maxlength="25" autocomplete="off" />
+                <mat-error *ngIf="form.controls.login.invalid">
+                  <div class="error" *ngIf="form.controls.login.errors?.required">
+                    Campo obrigatório
+                  </div>
+                  <div class="error" *ngIf="form.controls.login.errors?.maxlength">
+                    Máximo de 25 caracteres
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="width-100">
+              <mat-form-field appearance="outline" class="width-100">
+                <mat-label>&nbsp;Senha</mat-label>
+                <input matInput type="password" [formControl]="form.controls.senha" maxlength="20" autocomplete="off" />
+                <mat-error *ngIf="form.controls.senha.invalid">
+                  <div class="error" *ngIf="form.controls.senha.errors?.required">
+                    Campo obrigatório
+                  </div>
+                  <div class="error" *ngIf="form.controls.senha.errors?.maxlength">
+                    Máximo de 20 caracteres
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="width-100">
+              <mat-form-field appearance="outline" class="width-100">
+                <mat-label>&nbsp;Confirmar Senha</mat-label>
+                <input matInput type="password" [formControl]="form.controls.confirmar_senha" maxlength="20"
+                  autocomplete="off" />
+                <mat-error *ngIf="form.controls.confirmar_senha.invalid">
+                  <div class="error" *ngIf="form.controls.confirmar_senha.errors?.required">
+                    Campo obrigatório
+                  </div>
+                  <div class="error" *ngIf="form.controls.confirmar_senha.errors?.maxlength">
+                    Máximo de 20 caracteres
+                  </div>
+                  <div class="error" *ngIf="form.controls.confirmar_senha.errors?.confirmarSenha">
+                    As senhas não conferem
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row justify-content-between">
+          <div class="col-auto">
+            <button mat-flat-button color="warn" type="button" class="campo-dinamico" (click)="voltar()">
+              <mat-icon>arrow_back</mat-icon>&nbsp;
+              Voltar
+            </button>
+          </div>
+          <div class="col-auto">
+            <button mat-flat-button color="primary" type="submit" class="campo-dinamico">
+              Salvar&nbsp;
+              <mat-icon>save</mat-icon>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+
+
+</div>

@@ -1,0 +1,50 @@
+<form [formGroup]="form" novalidate>
+  <div class="mat-elevation-z8">
+
+    <mat-card>
+
+      <mat-card-header>
+        <mat-card-title>
+          Notificações
+        </mat-card-title>
+
+        <mat-card-subtitle>
+          <p>
+            Acesso à Notificações
+          </p>
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <div class="row margin-top-10">
+
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="mat-form-field float-left" class="width-100">
+              <p>Deseja receber notificações?</p>
+              <mat-radio-group [formControl]="form.controls.receber_notificacao" (change)="receberNotificacao(form.controls.receber_notificacao.value)">
+                <mat-radio-button [value]="true" style="margin-right: 30px; color: #000;">
+                  Sim
+                </mat-radio-button>
+                <mat-radio-button [value]="false" style="margin-right: 30px; color: #000;">
+                  Não
+                </mat-radio-button>
+              </mat-radio-group>
+              <mat-error *ngIf="form.controls.receber_notificacao.invalid">
+                <div class="error" *ngIf="form.controls.receber_notificacao.errors?.required" style="font-size: 75%;">
+                  Campo obrigatório
+                </div>
+              </mat-error>
+            </div>
+          </div>
+
+        </div>
+
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</form>

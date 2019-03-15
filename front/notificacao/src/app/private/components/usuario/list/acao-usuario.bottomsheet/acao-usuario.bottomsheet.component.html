@@ -1,0 +1,31 @@
+<mat-nav-list>
+
+  <a href="javascript:void(0)" mat-list-item (click)="opcao($event, 'notificar')" *ngIf="can_notificar">
+    <span mat-line>
+      <mat-icon>notifications</mat-icon>&nbsp;
+      Notificar
+    </span>
+  </a>
+
+  <a href="javascript:void(0)" mat-list-item (click)="opcao($event, 'alterar')">
+    <span mat-line>
+      <mat-icon>edit</mat-icon>&nbsp;
+      Alterar
+    </span>
+  </a>
+
+  <a href="javascript:void(0)" mat-list-item (click)="opcao($event, 'bloquear')" *ngIf="is_ativo">
+    <span mat-line>
+      <mat-icon class="red">block</mat-icon>&nbsp;
+      Bloquear
+    </span>
+  </a>
+ 
+  <a href="javascript:void(0)" mat-list-item (click)="opcao($event, 'desbloquear')" *ngIf="!is_ativo">
+    <span mat-line>
+      <mat-icon>lock_open</mat-icon>&nbsp;
+      Desbloquear
+    </span>
+  </a>
+
+</mat-nav-list>

@@ -1,0 +1,1 @@
+from .negocio_exception import NegocioException

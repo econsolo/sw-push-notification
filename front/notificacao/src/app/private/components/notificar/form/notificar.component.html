@@ -1,0 +1,77 @@
+<form [formGroup]="form" novalidate (submit)="notificar(form.value, $event)">
+
+  <div class="mat-elevation-z8">
+
+    <mat-card>
+
+      <mat-card-header>
+        <mat-card-title>
+          Notificar Usuário
+        </mat-card-title>
+        <mat-card-subtitle>
+          Enviar notificação para o usuário {{ usuario?.nome }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <div class="row margin-top-10">
+
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="width-100">
+              <mat-form-field appearance="outline" class="width-100">
+                <mat-label>&nbsp;Título</mat-label>
+                <input matInput type="text" [formControl]="form.controls.title" maxlength="25" autocomplete="off" />
+                <mat-error *ngIf="form.controls.title.invalid">
+                  <div class="error" *ngIf="form.controls.title.errors?.required">
+                    Campo obrigatório
+                  </div>
+                  <div class="error" *ngIf="form.controls.title.errors?.maxlength">
+                    Máximo de 25 caracteres
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="width-100">
+              <mat-form-field appearance="outline" class="width-100">
+                <mat-label>&nbsp;Mensagem</mat-label>
+                <input matInput type="text" [formControl]="form.controls.body" maxlength="100" autocomplete="off" />
+                <mat-error *ngIf="form.controls.body.invalid">
+                  <div class="error" *ngIf="form.controls.body.errors?.required">
+                    Campo obrigatório
+                  </div>
+                  <div class="error" *ngIf="form.controls.body.errors?.maxlength">
+                    Máximo de 100 caracteres
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+  <div class="row justify-content-between margin-top-10">
+    <div class="col-auto">
+      <button mat-flat-button color="warn" type="button" class="campo-dinamico" (click)="voltar()">
+        <mat-icon>arrow_back</mat-icon>&nbsp;
+        Voltar
+      </button>
+    </div>
+    <div class="col-auto">
+      <button mat-flat-button color="primary" type="submit" class="campo-dinamico">
+        Salvar&nbsp;
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+  </div>
+
+</form>
